@@ -7,10 +7,10 @@ const BmiForm = (props) => {
     margin: "10px 0px"
   }
 
-  const [height, setHeight] = useState("")
-  const [weight, setWeight] = useState("")
-  const [name, setName] = useState("")
-  const [age, setAge] = useState("")
+  const [height, setHeight] = useState()
+  const [weight, setWeight] = useState()
+  const [name, setName] = useState()
+  const [age, setAge] = useState()
   const [bmi, setBmi] = useState(0)
   const [bmiCategory, setBmiCategory] = useState("")
 
