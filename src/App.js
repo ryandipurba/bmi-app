@@ -1,37 +1,34 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Col, Container, Row } from 'reactstrap'
 import BmiForm from "./component/BmiForm"
 import Content from "./component/Content"
 import Result from './component/Result'
 
 const App = () => {
-  let [bmi, setbmi] = useState(0)
   const [result, setResult] = useState(false)
-  const [name, setName] = useState("")
-  const [age, setAge] = useState("")
-  const [bmiCategorys, setBmiCategorys] = useState("")
+  const [people, setpeople] = useState()
 
   const countBmi = (weight, height) => {
-    return setbmi((weight / Math.pow(height, 2)).toFixed(1))
+    return (weight / Math.pow(height, 2)).toFixed(1)
   }
 
   const bmiCategory = (bmi) => {
     setResult(true)
     if (bmi >= 30) {
-      setBmiCategorys("Obesity");
+      return ("Obesity");
     } else if (bmi >= 25.1 && bmi <= 29.9) {
-      setBmiCategorys("overweight");
+      return ("overweight");
     } else if (bmi >= 18.5 && bmi <= 24.9) {
-      setBmiCategorys("Normal weight");
+      return ("Normal weight");
     }
     else {
-      setBmiCategorys("underweight");
+      return ("underweight");
     }
   }
 
   useEffect(() => {
 
-  });
+  }, [])
 
   return (
     <Container>
@@ -40,7 +37,7 @@ const App = () => {
       <p>Use this calculator to check your Body Mass Index (BMI) and check whether you are at your ideal weight or not. You can also use it to check your child's body mass index.</p> */}
       <Row>
         <Col md="6" sm="12">
-          <BmiForm bmiCategory={bmiCategory} countBmi={countBmi} setAge={setAge} setName={setName} />
+          <BmiForm bmiCategory={bmiCategory} countBmi={countBmi} setpeople={setpeople} />
         </Col>
         <Col md="6" sm="12">
           {!result ? (
@@ -50,7 +47,7 @@ const App = () => {
             </Fragment>
           ) : (
             <Fragment>
-              <Result setResult={setResult} name={name} bmi={bmi} bmiCategory={bmiCategorys} age={age} />
+              <Result setResult={setResult} people={people} />
             </Fragment>
           )}
         </Col>

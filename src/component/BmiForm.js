@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap'
 
 const BmiForm = (props) => {
@@ -10,15 +11,29 @@ const BmiForm = (props) => {
   const [weight, setWeight] = useState("")
   const [name, setName] = useState("")
   const [age, setAge] = useState("")
+  const [bmi, setBmi] = useState(0)
+  const [bmiCategory, setBmiCategory] = useState("")
 
   return (
     <div>
       <Form
         onSubmit={(event) => {
           event.preventDefault()
-          props.setAge(age)
-          props.setName(name)
-          props.bmiCategory(props.countBmi(weight, height))
+          setBmi(props.countBmi(weight, height))
+          setBmiCategory(props.bmiCategory(bmi))
+          axios.put('https://my-json-server.typicode.com/ryandipurba/bmi-api/people', {
+            "name": name,
+            "age": age,
+            "height": height,
+            "weight": weight,
+            "bmi": bmi,
+            "bmiCategory": bmiCategory
+          }).then(resp => {
+            props.setpeople(resp.data)
+            console.log(resp.data);
+          }).catch(error => {
+            console.log(error);
+          });
         }}
       >
         <FormGroup style={formGroup}>
