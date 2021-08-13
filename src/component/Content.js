@@ -2,6 +2,8 @@ import React from 'react'
 import { Table } from 'reactstrap'
 
 const Content = () => {
+
+
   return (
     <Table striped>
       <thead>
