@@ -21,6 +21,10 @@ const BmiForm = (props) => {
           event.preventDefault()
           setBmi(props.countBmi(weight, height))
           setBmiCategory(props.bmiCategory(bmi))
+          props.setBmi(bmi)
+          props.setAge(age)
+          props.setBmiCategory(bmiCategory)
+          props.setName(name)
           axios.put('https://my-json-server.typicode.com/ryandipurba/bmi-api/people', {
             "name": name,
             "age": age,

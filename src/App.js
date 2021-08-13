@@ -7,6 +7,10 @@ import Result from './component/Result'
 const App = () => {
   const [result, setResult] = useState(false)
   const [people, setpeople] = useState()
+  const [name, setName] = useState()
+  const [age, setAge] = useState()
+  const [bmi, setBmi] = useState(0)
+  const [bmiCat, setBmiCategory] = useState("")
 
   const countBmi = (weight, height) => {
     return (weight / Math.pow(height, 2)).toFixed(1)
@@ -37,7 +41,7 @@ const App = () => {
       <p>Use this calculator to check your Body Mass Index (BMI) and check whether you are at your ideal weight or not. You can also use it to check your child's body mass index.</p> */}
       <Row>
         <Col md="6" sm="12">
-          <BmiForm bmiCategory={bmiCategory} countBmi={countBmi} setpeople={setpeople} />
+          <BmiForm bmiCategory={bmiCategory} countBmi={countBmi} setpeople={setpeople} setName={setName} setBmi={setBmi} setAge={setAge} setBmiCategory={setBmiCategory} />
         </Col>
         <Col md="6" sm="12">
           {!result ? (
@@ -47,7 +51,7 @@ const App = () => {
             </Fragment>
           ) : (
             <Fragment>
-              <Result setResult={setResult} people={people} />
+              <Result setResult={setResult} people={people} name={name} age={age} bmi={bmi} bmiCategory={bmiCat} />
             </Fragment>
           )}
         </Col>

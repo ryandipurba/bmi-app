@@ -4,7 +4,6 @@ import { Button, Table } from 'reactstrap'
 
 const Result = (props) => {
 
-  console.log(props.people.bmi)
   return (
     < div >
       <h1>Your BMI</h1>
@@ -12,19 +11,19 @@ const Result = (props) => {
         <tbody>
           <tr>
             <td>Nama</td>
-            <td>: {props.people.name}</td>
+            <td>: {props.name}</td>
           </tr>
           <tr>
             <td>Age</td>
-            <td>: {props.people.age}</td>
+            <td>: {props.age}</td>
           </tr>
           <tr>
             <td>Bmi</td>
-            <td>: {props.people.bmi}</td>
+            <td>: {props.bmi}</td>
           </tr>
           <tr>
             <td>Category</td>
-            <td>: {props.people.bmiCategory}</td>
+            <td>: {props.bmiCategory}</td>
           </tr>
         </tbody>
       </Table>
