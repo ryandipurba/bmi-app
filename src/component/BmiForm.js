@@ -11,33 +11,32 @@ const BmiForm = (props) => {
   const [weight, setWeight] = useState()
   const [name, setName] = useState()
   const [age, setAge] = useState()
-  const [bmi, setBmi] = useState(0)
-  const [bmiCategory, setBmiCategory] = useState("")
 
   return (
     <div>
       <Form
         onSubmit={(event) => {
           event.preventDefault()
-          setBmi(props.countBmi(weight, height))
-          setBmiCategory(props.bmiCategory(bmi))
-          props.setBmi(bmi)
-          props.setAge(age)
-          props.setBmiCategory(bmiCategory)
-          props.setName(name)
-          axios.put('https://my-json-server.typicode.com/ryandipurba/bmi-api/people', {
-            "name": name,
-            "age": age,
-            "height": height,
-            "weight": weight,
-            "bmi": bmi,
-            "bmiCategory": bmiCategory
+
+          axios({
+            method: 'post',
+            url: "https://bmi-api-v2.herokuapp.com/bmi",
+            headers: {},
+            data: {
+              "name": name,
+              "age": age,
+              "height": height,
+              "weight": weight // This is the body part
+            }
           }).then(resp => {
             props.setpeople(resp.data)
+            props.setResult(true)
             console.log(resp.data);
           }).catch(error => {
             console.log(error);
           });
+
+
         }}
       >
         <FormGroup style={formGroup}>

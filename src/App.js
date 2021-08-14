@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Col, Container, Row } from 'reactstrap'
 import BmiForm from "./component/BmiForm"
 import Content from "./component/Content"
@@ -7,32 +7,6 @@ import Result from './component/Result'
 const App = () => {
   const [result, setResult] = useState(false)
   const [people, setpeople] = useState()
-  const [name, setName] = useState()
-  const [age, setAge] = useState()
-  const [bmi, setBmi] = useState(0)
-  const [bmiCat, setBmiCategory] = useState("")
-
-  const countBmi = (weight, height) => {
-    return (weight / Math.pow(height, 2)).toFixed(1)
-  }
-
-  const bmiCategory = (bmi) => {
-    setResult(true)
-    if (bmi >= 30) {
-      return ("Obesity");
-    } else if (bmi >= 25.1 && bmi <= 29.9) {
-      return ("overweight");
-    } else if (bmi >= 18.5 && bmi <= 24.9) {
-      return ("Normal weight");
-    }
-    else {
-      return ("underweight");
-    }
-  }
-
-  useEffect(() => {
-
-  }, [])
 
   return (
     <Container>
@@ -41,7 +15,7 @@ const App = () => {
       <p>Use this calculator to check your Body Mass Index (BMI) and check whether you are at your ideal weight or not. You can also use it to check your child's body mass index.</p> */}
       <Row>
         <Col md="6" sm="12">
-          <BmiForm bmiCategory={bmiCategory} countBmi={countBmi} setpeople={setpeople} setName={setName} setBmi={setBmi} setAge={setAge} setBmiCategory={setBmiCategory} />
+          <BmiForm setpeople={setpeople} setResult={setResult} />
         </Col>
         <Col md="6" sm="12">
           {!result ? (
@@ -51,7 +25,7 @@ const App = () => {
             </Fragment>
           ) : (
             <Fragment>
-              <Result setResult={setResult} people={people} name={name} age={age} bmi={bmi} bmiCategory={bmiCat} />
+              <Result setResult={setResult} people={people} />
             </Fragment>
           )}
         </Col>

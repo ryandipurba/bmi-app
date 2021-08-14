@@ -11,19 +11,19 @@ const Result = (props) => {
         <tbody>
           <tr>
             <td>Nama</td>
-            <td>: {props.name}</td>
+            <td>: {props.people.name}</td>
           </tr>
           <tr>
             <td>Age</td>
-            <td>: {props.age}</td>
+            <td>: {props.people.age}</td>
           </tr>
           <tr>
             <td>Bmi</td>
-            <td>: {props.bmi}</td>
+            <td>: {props.people.bmi}</td>
           </tr>
           <tr>
             <td>Category</td>
-            <td>: {props.bmiCategory}</td>
+            <td>: {props.people.category}</td>
           </tr>
         </tbody>
       </Table>
